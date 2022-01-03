@@ -14,4 +14,9 @@ public class LoadScene : MonoBehaviour
     {
         SceneManager.LoadScene(s);
     }
+
+    public void DestroyBG()
+    {
+        Destroy(gameObject);
+    }
 }
