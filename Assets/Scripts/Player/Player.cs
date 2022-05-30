@@ -20,7 +20,17 @@ public class Player : MonoBehaviour
     public float animationDuration = 0.2f;
     public Ease ease = Ease.OutBack;
 
+    [Header("Animation Player")]
+    public string boolRun = "Run";
+    private Animator playerAnimator;
+    public float playerSwipeDuration = 0.05f;
+
     private float _currentSpeed;
+
+    private void Start()
+    {
+        playerAnimator = GetComponentInChildren<Animator>();
+    }
 
     private void Update()
     {
@@ -34,10 +44,30 @@ public class Player : MonoBehaviour
         if (Input.GetKey(KeyCode.LeftArrow))
         {
             playerRigidbody.velocity = new Vector2(-_currentSpeed, playerRigidbody.velocity.y);
+            //playerRigidbody.transform.localScale = new Vector3(-1, 1, 1);
+
+            if (playerRigidbody.transform.localScale.x != -1)
+            {
+                playerRigidbody.transform.DOScaleX(-1, playerSwipeDuration);
+            }
+
+            playerAnimator.SetBool(boolRun, true);
         }
         else if (Input.GetKey(KeyCode.RightArrow))
         {
             playerRigidbody.velocity = new Vector2(_currentSpeed, playerRigidbody.velocity.y);
+            //playerRigidbody.transform.localScale = new Vector3(1, 1, 1);
+
+            if (playerRigidbody.transform.localScale.x != 1)
+            {
+                playerRigidbody.transform.DOScaleX(1, playerSwipeDuration);
+            }
+
+            playerAnimator.SetBool(boolRun, true);
+        }
+        else
+        {
+            playerAnimator.SetBool(boolRun, false);
         }
 
         if (playerRigidbody.velocity.x > 0)
@@ -55,10 +85,12 @@ public class Player : MonoBehaviour
         if (Input.GetKey(KeyCode.LeftShift))
         {
             _currentSpeed = speedRun;
+            playerAnimator.speed = 1.25f;
         }
         else
         {
             _currentSpeed = speed;
+            playerAnimator.speed = 1;
         }
     }
 
