@@ -44,7 +44,6 @@ public class Player : MonoBehaviour
         if (Input.GetKey(KeyCode.LeftArrow))
         {
             playerRigidbody.velocity = new Vector2(-_currentSpeed, playerRigidbody.velocity.y);
-            //playerRigidbody.transform.localScale = new Vector3(-1, 1, 1);
 
             if (playerRigidbody.transform.localScale.x != -1)
             {
@@ -56,7 +55,6 @@ public class Player : MonoBehaviour
         else if (Input.GetKey(KeyCode.RightArrow))
         {
             playerRigidbody.velocity = new Vector2(_currentSpeed, playerRigidbody.velocity.y);
-            //playerRigidbody.transform.localScale = new Vector3(1, 1, 1);
 
             if (playerRigidbody.transform.localScale.x != 1)
             {
