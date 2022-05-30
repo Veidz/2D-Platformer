@@ -67,7 +67,7 @@ public class Player : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Space))
         {
             playerRigidbody.velocity = Vector2.up * forceJump;
-            playerRigidbody.transform.localScale = Vector2.one * 2;
+            playerRigidbody.transform.localScale = Vector2.one;
 
             DOTween.Kill(playerRigidbody.transform);
 
