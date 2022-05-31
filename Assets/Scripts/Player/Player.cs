@@ -12,6 +12,7 @@ public class Player : MonoBehaviour
     public float speed;
     public float speedRun;
     public float forceJump = 20f;
+    private float playerMove;
 
 
     [Header("Animation setup")]
@@ -41,8 +42,13 @@ public class Player : MonoBehaviour
 
     private void HandleWalk()
     {
-        if (Input.GetKey(KeyCode.LeftArrow))
+        playerMove = Input.GetAxis("Horizontal");
+
+        Debug.Log(playerMove);
+
+        if (playerMove < 0)
         {
+            // Left
             playerRB.velocity = new Vector2(-_currentSpeed, playerRB.velocity.y);
 
             if (playerRB.transform.localScale.x != -1)
@@ -52,8 +58,9 @@ public class Player : MonoBehaviour
 
             playerAnimator.SetBool(boolRun, true);
         }
-        else if (Input.GetKey(KeyCode.RightArrow))
+        else if (playerMove > 0)
         {
+            // Right
             playerRB.velocity = new Vector2(_currentSpeed, playerRB.velocity.y);
 
             if (playerRB.transform.localScale.x != 1)
@@ -65,6 +72,7 @@ public class Player : MonoBehaviour
         }
         else
         {
+            // Idle
             playerAnimator.SetBool(boolRun, false);
         }
 
