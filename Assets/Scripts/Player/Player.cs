@@ -44,8 +44,6 @@ public class Player : MonoBehaviour
     {
         playerMove = Input.GetAxis("Horizontal");
 
-        Debug.Log(playerMove);
-
         if (playerMove < 0)
         {
             // Left
@@ -102,14 +100,16 @@ public class Player : MonoBehaviour
 
     private void HandleJump()
     {
+        playerMove = Input.GetAxis("Horizontal");
+
         if (Input.GetKeyDown(KeyCode.Space))
         {
             playerRB.velocity = Vector2.up * forceJump;
-            playerRB.transform.localScale = Vector2.one;
+            //playerRB.transform.localScale = Vector2.one;
 
-            DOTween.Kill(playerRB.transform);
+            //DOTween.Kill(playerRB.transform);
 
-            HandleScaleJump();
+            //HandleScaleJump();
         }
     }
 
