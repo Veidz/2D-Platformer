@@ -4676,6 +4676,7 @@ MonoBehaviour:
   startLife: 10
   destroyOnKill: 1
   delayToKill: 0.5
+  _flashColor: {fileID: 1587175811}
 --- !u!210 &1587175810
 SortingGroup:
   m_ObjectHideFlags: 0
