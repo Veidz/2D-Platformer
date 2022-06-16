@@ -11,6 +11,19 @@ public class EnemyBase : MonoBehaviour
 
     public HealthBase healthBase;
 
+    private void Awake()
+    {
+        if (healthBase != null)
+        {
+            healthBase.OnKill += OnEnemyKill;
+        }
+    }
+
+    private void OnEnemyKill()
+    {
+        healthBase.OnKill -= OnEnemyKill;
+    }
+
     private void OnCollisionEnter2D(Collision2D collision)
     {
         HealthBase health = collision.gameObject.GetComponent<HealthBase>();
