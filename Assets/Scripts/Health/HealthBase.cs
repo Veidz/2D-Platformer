@@ -60,6 +60,7 @@ public class HealthBase : MonoBehaviour
             Destroy(gameObject, delayToKill);
         }
 
-        OnKill.Invoke();
+        //if (OnKill != null) OnKill.Invoke();
+        OnKill?.Invoke();
     }
 }
