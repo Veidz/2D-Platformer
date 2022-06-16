@@ -8,6 +8,7 @@ public class EnemyBase : MonoBehaviour
 
     public Animator enemyAnimator;
     public string triggerAttack = "Attack";
+    public string triggerDeath = "Death";
 
     public HealthBase healthBase;
 
@@ -22,6 +23,7 @@ public class EnemyBase : MonoBehaviour
     private void OnEnemyKill()
     {
         healthBase.OnKill -= OnEnemyKill;
+        PlayDeathAnimation();
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
@@ -38,6 +40,11 @@ public class EnemyBase : MonoBehaviour
     private void PlayAttackAnimation()
     {
         enemyAnimator.SetTrigger(triggerAttack);
+    }
+
+    private void PlayDeathAnimation()
+    {
+        enemyAnimator.SetTrigger(triggerDeath);
     }
 
     public void Damage(int amount)

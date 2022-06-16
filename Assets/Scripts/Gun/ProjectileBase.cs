@@ -24,7 +24,6 @@ public class ProjectileBase : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        print("colisao");
         var enemy = collision.transform.GetComponent<EnemyBase>();
 
         if (enemy != null)
