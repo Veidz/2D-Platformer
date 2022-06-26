@@ -3459,6 +3459,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   coins: {fileID: 11400000, guid: 2b99788ed9729e2488f3d973ca2293af, type: 2}
+  lifes: {fileID: 11400000, guid: f51b97a7dda894f48be96eab7788f6c2, type: 2}
 --- !u!4 &964044835
 Transform:
   m_ObjectHideFlags: 0
@@ -4144,6 +4145,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1336938761}
   - component: {fileID: 1336938762}
+  - component: {fileID: 1336938763}
   m_Layer: 0
   m_Name: PFB_Life
   m_TagString: Untagged
@@ -4182,6 +4184,19 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 2
+--- !u!114 &1336938763
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1336938760}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cb7a981c972333d468d6953278bc545a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  compareTag: Player
 --- !u!1 &1482093405
 GameObject:
   m_ObjectHideFlags: 0
