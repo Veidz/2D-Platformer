@@ -8,25 +8,11 @@ public class Player : MonoBehaviour
     private Rigidbody2D playerRB;
     public HealthBase healthBase;
 
-    [Header("Speed setup")]
-    public Vector2 friction = new Vector2(-0.3f, 0);
-    public float speed;
-    public float speedRun;
-    public float forceJump = 20f;
+    [Header("Setup")]
+    public SOPlayer soPlayer;
+
     private float playerMove;
-
-
-    [Header("Animation setup")]
-    public float jumpScale = 1.1f;
-    public float animationDuration = 0.3f;
-    public Ease ease = Ease.OutBack;
-
-    [Header("Animation Player")]
-    public string boolRun = "Run";
-    public string triggerDeath = "Death";
     private Animator playerAnimator;
-    public float playerSwipeDuration = 0.05f;
-
     private float _currentSpeed;
 
     private void Awake()
@@ -40,7 +26,7 @@ public class Player : MonoBehaviour
     private void OnPlayerKill()
     {
         healthBase.OnKill -= OnPlayerKill;
-        playerAnimator.SetTrigger(triggerDeath);
+        playerAnimator.SetTrigger(soPlayer.triggerDeath);
     }
 
     private void Start()
@@ -67,10 +53,10 @@ public class Player : MonoBehaviour
 
             if (playerRB.transform.localScale.x != -1)
             {
-                playerRB.transform.DOScaleX(-1, playerSwipeDuration);
+                playerRB.transform.DOScaleX(-1, soPlayer.playerSwipeDuration);
             }
 
-            playerAnimator.SetBool(boolRun, true);
+            playerAnimator.SetBool(soPlayer.boolRun, true);
         }
         else if (playerMove > 0)
         {
@@ -79,24 +65,24 @@ public class Player : MonoBehaviour
 
             if (playerRB.transform.localScale.x != 1)
             {
-                playerRB.transform.DOScaleX(1, playerSwipeDuration);
+                playerRB.transform.DOScaleX(1, soPlayer.playerSwipeDuration);
             }
 
-            playerAnimator.SetBool(boolRun, true);
+            playerAnimator.SetBool(soPlayer.boolRun, true);
         }
         else
         {
             // Idle
-            playerAnimator.SetBool(boolRun, false);
+            playerAnimator.SetBool(soPlayer.boolRun, false);
         }
 
         if (playerRB.velocity.x > 0)
         {
-            playerRB.velocity += friction;
+            playerRB.velocity += soPlayer.friction;
         }
         else if (playerRB.velocity.x < 0)
         {
-            playerRB.velocity -= friction;
+            playerRB.velocity -= soPlayer.friction;
         }
     }
 
@@ -104,12 +90,12 @@ public class Player : MonoBehaviour
     {
         if (Input.GetKey(KeyCode.LeftShift))
         {
-            _currentSpeed = speedRun;
+            _currentSpeed = soPlayer.speedRun;
             playerAnimator.speed = 1.25f;
         }
         else
         {
-            _currentSpeed = speed;
+            _currentSpeed = soPlayer.speed;
             playerAnimator.speed = 1;
         }
     }
@@ -120,7 +106,7 @@ public class Player : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.Space))
         {
-            playerRB.velocity = Vector2.up * forceJump;
+            playerRB.velocity = Vector2.up * soPlayer.forceJump;
             //playerRB.transform.localScale = Vector2.one;
 
             //DOTween.Kill(playerRB.transform);
@@ -131,6 +117,6 @@ public class Player : MonoBehaviour
 
     private void HandleScaleJump()
     {
-        playerRB.transform.DOScale(jumpScale, animationDuration).SetLoops(2, LoopType.Yoyo).SetEase(ease);
+        playerRB.transform.DOScale(soPlayer.jumpScale, soPlayer.animationDuration).SetLoops(2, LoopType.Yoyo).SetEase(soPlayer.ease);
     }
 }
