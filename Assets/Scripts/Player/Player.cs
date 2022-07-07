@@ -107,16 +107,6 @@ public class Player : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Space))
         {
             playerRB.velocity = Vector2.up * soPlayer.forceJump;
-            //playerRB.transform.localScale = Vector2.one;
-
-            //DOTween.Kill(playerRB.transform);
-
-            //HandleScaleJump();
         }
-    }
-
-    private void HandleScaleJump()
-    {
-        playerRB.transform.DOScale(soPlayer.jumpScale, soPlayer.animationDuration).SetLoops(2, LoopType.Yoyo).SetEase(soPlayer.ease);
     }
 }
